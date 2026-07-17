@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account - SecureBank</title>
+    <!-- <link rel="stylesheet" href="account.css" /> -->
+  </head>
+  <body>
+    <!-- Navbar -->
+  <app-sidebar></app-sidebar>
+   
+
+    <!-- Main Container -->
+
+    <div class="container">
+      <div class="welcome-card">
+        <h1>Welcome, John Doe 👋</h1>
+        <p>Account Number: 123456789012</p>
+      </div>
+
+      <!-- Balance Section -->
+
+      <div class="balance-section">
+        <div class="balance-card">
+          <h3>Available Balance</h3>
+          <h1>₹ 2,45,670</h1>
+          <p>Updated just now</p>
+        </div>
+
+        <div class="quick-actions">
+          <button>💸 Transfer Money</button>
+          <button>📄 Mini Statement</button>
+          <button>💳 Pay Bills</button>
+          <button>🏦 Deposit</button>
+        </div>
+      </div>
+
+      <!-- Recent Transactions -->
+
+      <div class="transactions">
+        <h2>Recent Transactions</h2>
+
+        <table>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Amount</th>
+          </tr>
+
+          <tr>
+            <td>07-Jun-2026</td>
+            <td>Amazon Payment</td>
+            <td class="debit">Debit</td>
+            <td>- ₹2,500</td>
+          </tr>
+
+          <tr>
+            <td>06-Jun-2026</td>
+            <td>Salary Credit</td>
+            <td class="credit">Credit</td>
+            <td>+ ₹50,000</td>
+          </tr>
+
+          <tr>
+            <td>05-Jun-2026</td>
+            <td>Electricity Bill</td>
+            <td class="debit">Debit</td>
+            <td>- ₹1,200</td>
+          </tr>
+
+          <tr>
+            <td>04-Jun-2026</td>
+            <td>UPI Received</td>
+            <td class="credit">Credit</td>
+            <td>+ ₹3,000</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

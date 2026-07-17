@@ -1,0 +1,53 @@
+<div class="page-container">
+  <app-sidebar></app-sidebar>
+
+  <div class="page-header">
+    <h1>Transaction History</h1>
+    <p>View and track all your banking activities.</p>
+  </div>
+
+  <div class="summary-cards">
+    <div class="card">
+      <h3>Total Transactions</h3>
+      <h2>156</h2>
+    </div>
+
+    <div class="card">
+      <h3>Total Credits</h3>
+      <h2>₹1,25,000</h2>
+    </div>
+
+    <div class="card">
+      <h3>Total Debits</h3>
+      <h2>₹85,000</h2>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Mobile No</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Opening Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let i of userlist">
+          <td>{{ i.id }}</td>
+          <td>{{ i.full_name }}</td>
+          <td>{{ i.user_name }}</td>
+          <td>{{ i.mobile_number }}</td>
+          <td>{{ i.email }}</td>
+          <td>{{ i.user_password }}</td>
+          <td>{{ i.opening_date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,12 +1,29 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal, inject, OnInit } from '@angular/core';
+import { RouterOutlet,Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { Navbar } from './Components/navbar/navbar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule, Navbar],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App {
-  protected readonly title = signal('API-Integrations');
+export class App implements OnInit {
+
+  constructor(private router: Router) {}
+  http = inject(HttpClient);
+
+  user: any[] = [];
+
+  ngOnInit(): void {
+    this.usercomment();
+  }
+  usercomment() {
+    this.http.get<any[]>('https://jsonplaceholder.typicode.com/comments').subscribe((data) => {
+      this.user = data;
+      // console.log(this.user);
+    });
+  }
 }

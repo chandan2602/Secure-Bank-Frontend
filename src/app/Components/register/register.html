@@ -1,0 +1,99 @@
+<div class="register-container">
+
+    <div class="register-card">
+
+        <div class="left-section">
+
+            <div class="bank-logo">🏦</div>
+
+            <h1>SecureBank</h1>
+
+            <p>
+                Join thousands of customers who trust
+                SecureBank for safe and smart banking.
+            </p>
+
+            <ul>
+                <li>✔ Secure Transactions</li>
+                <li>✔ Instant Money Transfers</li>
+                <li>✔ 24/7 Customer Support</li>
+                <li>✔ Mobile & Online Banking</li>
+            </ul>
+
+        </div>
+
+        <div class="right-section">
+
+            <h2>Create Account</h2>
+
+            <form>
+
+                <div class="input-box">
+                    <input
+                    type="text"
+                    name = "Full Name" 
+                    placeholder="Full Name" 
+                    [(ngModel)] = 'registerobj.full_name'
+                    >
+                </div>
+
+                <div class="input-box">
+                    <input 
+                    type="email" 
+                    placeholder="Email Address" 
+                    name = 'email'
+                    [(ngModel)] = 'registerobj.email'
+                    >
+                </div>
+
+                <div class="input-box">
+                    <input 
+                    type="text" 
+                    placeholder="Mobile Number" 
+                    name = 'mobile_number' 
+                    [(ngModel)] = 'registerobj.mobile_number'
+                    >
+                </div>
+
+                <div class="input-box">
+                    <input 
+                    type="text" 
+                    name = 'User_name'
+                    placeholder="Username" 
+                    [(ngModel)] = 'registerobj.user_name'
+                    >
+                </div>
+
+                <div class="input-box">
+                    <input 
+                    type="password" 
+                    placeholder="Password" 
+                    name = 'user_password'
+                    [(ngModel)] = 'registerobj.user_password'
+                    >
+                </div>
+
+                <!-- <div class="input-box">
+                    <input 
+                    type="password" 
+                    placeholder="Confirm Password" 
+                    [(ngModel)] = 'registerobj.mobile_number'
+                    >
+                </div> -->
+
+                <button type="submit" (click)="registerUser()">
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="login-link">
+                Already have an account?
+                <a href="#">Login</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

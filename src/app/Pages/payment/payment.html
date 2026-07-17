@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments - SecureBank</title>
+
+    <link rel="stylesheet" href="payment.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+
+    <!-- Hero -->
+     <app-sidebar></app-sidebar>
+
+    <section class="hero">
+        <h1>Make a Payment</h1>
+        <p>Pay bills, recharge mobiles, and manage your subscriptions.</p>
+    </section>
+
+    <!-- Payment Categories -->
+
+    <section class="payment-grid">
+
+        <div class="card">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>Electricity</h3>
+            <p>Pay your electricity bills instantly.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-droplet"></i>
+            <h3>Water Bill</h3>
+            <p>Quick and secure water bill payments.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-wifi"></i>
+            <h3>Broadband</h3>
+            <p>Recharge or pay broadband invoices.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <h3>Mobile Recharge</h3>
+            <p>Recharge prepaid or pay postpaid bills.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-gas-pump"></i>
+            <h3>Gas Bill</h3>
+            <p>Pay LPG and pipeline gas bills.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-tv"></i>
+            <h3>DTH Recharge</h3>
+            <p>Recharge your favorite DTH provider.</p>
+        </div>
+
+    </section>
+
+    <!-- Payment Form -->
+
+    <section class="payment-section">
+
+        <div class="payment-form">
+
+            <h2>Quick Payment</h2>
+
+            <form>
+
+                <label>Payment Type</label>
+                <select>
+                    <option>Electricity</option>
+                    <option>Water</option>
+                    <option>Broadband</option>
+                    <option>Mobile Recharge</option>
+                    <option>Gas</option>
+                    <option>DTH</option>
+                </select>
+
+                <label>Consumer / Mobile Number</label>
+                <input type="text" placeholder="Enter Number">
+
+                <label>Amount (₹)</label>
+                <input type="number" placeholder="Enter Amount">
+
+                <label>Remarks</label>
+                <textarea rows="3"
+                placeholder="Optional"></textarea>
+
+                <button type="submit">
+                    <i class="fa-solid fa-credit-card"></i>
+                    Pay Now
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Summary -->
+
+        <div class="summary">
+
+            <h2>Account Details</h2>
+
+            <div class="balance-card">
+                <p>Available Balance</p>
+                <h1>₹ 2,45,670</h1>
+            </div>
+
+            <div class="details">
+                <p><strong>Account :</strong> XXXX XXXX 4589</p>
+                <p><strong>Daily Limit :</strong> ₹5,00,000</p>
+                <p><strong>Payments Today :</strong> ₹12,500</p>
+            </div>
+
+            <div class="notice">
+                <h3>🔒 Secure Payments</h3>
+                <p>
+                    All transactions are protected using
+                    advanced banking security.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Recent Payments -->
+
+    <section class="history">
+
+        <h2>Recent Payments</h2>
+
+        <table>
+
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Reference</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>07-Jun-2026</td>
+                <td>Electricity</td>
+                <td>EB458912</td>
+                <td>₹1,250</td>
+                <td class="success">Paid</td>
+            </tr>
+
+            <tr>
+                <td>06-Jun-2026</td>
+                <td>Mobile Recharge</td>
+                <td>9876543210</td>
+                <td>₹399</td>
+                <td class="success">Paid</td>
+            </tr>
+
+            <tr>
+                <td>05-Jun-2026</td>
+                <td>Broadband</td>
+                <td>BB102548</td>
+                <td>₹999</td>
+                <td class="pending">Processing</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+</body>
+</html>

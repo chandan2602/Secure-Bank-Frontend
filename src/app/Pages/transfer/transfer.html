@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Transfer - SecureBank</title>
+    <link rel="stylesheet" href="transfer.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+<app-sidebar></app-sidebar>
+    <!-- Hero Section -->
+
+    <section class="hero">
+        <h1>Transfer Money</h1>
+        <p>Fast, secure and instant money transfers.</p>
+    </section>
+
+    <!-- Transfer Container -->
+
+    <section class="transfer-container">
+
+        <!-- Transfer Form -->
+
+        <div class="transfer-card">
+
+            <h2>Send Money</h2>
+
+            <form>
+
+                <label>Recipient Name</label>
+                <input type="text" placeholder="Enter recipient name">
+
+                <label>Account Number</label>
+                <input type="text" placeholder="Enter account number">
+
+                <label>IFSC Code</label>
+                <input type="text" placeholder="Enter IFSC code">
+
+                <label>Transfer Type</label>
+                <select>
+                    <option>UPI</option>
+                    <option>IMPS</option>
+                    <option>NEFT</option>
+                    <option>RTGS</option>
+                </select>
+
+                <label>Amount (₹)</label>
+                <input type="number" placeholder="Enter amount">
+
+                <label>Remarks</label>
+                <textarea rows="3" placeholder="Optional"></textarea>
+
+                <button type="submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Transfer Now
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Account Summary -->
+
+        <div class="summary-card">
+
+            <h2>Account Summary</h2>
+
+            <div class="balance-box">
+                <h3>Available Balance</h3>
+                <h1>₹ 2,45,670</h1>
+            </div>
+
+            <div class="quick-info">
+                <p><strong>Account:</strong> XXXX XXXX 4589</p>
+                <p><strong>Daily Limit:</strong> ₹5,00,000</p>
+                <p><strong>Today's Used:</strong> ₹25,000</p>
+            </div>
+
+            <h3>Recent Beneficiaries</h3>
+
+            <div class="beneficiary">
+                <i class="fa-solid fa-user"></i>
+                Rahul Sharma
+            </div>
+
+            <div class="beneficiary">
+                <i class="fa-solid fa-user"></i>
+                Priya Reddy
+            </div>
+
+            <div class="beneficiary">
+                <i class="fa-solid fa-user"></i>
+                Amit Kumar
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Recent Transfers -->
+
+    <section class="history">
+
+        <h2>Recent Transfers</h2>
+
+        <table>
+
+            <tr>
+                <th>Date</th>
+                <th>Beneficiary</th>
+                <th>Method</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>07-Jun-2026</td>
+                <td>Rahul Sharma</td>
+                <td>UPI</td>
+                <td>₹3,000</td>
+                <td class="success">Completed</td>
+            </tr>
+
+            <tr>
+                <td>06-Jun-2026</td>
+                <td>Priya Reddy</td>
+                <td>NEFT</td>
+                <td>₹15,000</td>
+                <td class="success">Completed</td>
+            </tr>
+
+            <tr>
+                <td>05-Jun-2026</td>
+                <td>Amit Kumar</td>
+                <td>IMPS</td>
+                <td>₹5,000</td>
+                <td class="pending">Pending</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+</body>
+</html>
