@@ -12,10 +12,10 @@ import { Dashboard } from './Pages/dashboard/dashboard';
 import { Sidebar } from './Pages/sidebar/sidebar';
 import { Transation } from './Pages/transation/transation';
 import { Settings } from './Pages/settings/settings';
+import { authGuard } from './auth/auth-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
-  { path: 'navbar', component: Navbar },
   { path: 'landing-page', component: LandingPage },
   { path: 'accounts', component: Accounts },
   { path: 'payments', component: Payment },
@@ -24,10 +24,8 @@ export const routes: Routes = [
   { path: 'transfer', component: Transfer },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
-  {path : 'sidebar', component:Sidebar },
-  {path : 'dashboard',component: Dashboard },
-  {path : 'settings',component: Settings },
-  {path : 'transations',component: Transation }
-
-
+  { path: 'sidebar', component: Sidebar },
+  { path: 'dashboard', component: Dashboard },
+  { path: 'settings', component: Settings },
+  { path: 'transations', component: Transation },
 ];

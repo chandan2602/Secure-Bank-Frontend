@@ -36,28 +36,30 @@
 }
 
 .table-container {
-  background: white;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  overflow-x: auto;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
-th {
-  background: #003366;
-  color: white;
-  padding: 15px;
-}
-
+th,
 td {
   padding: 15px;
-  border-bottom: 1px solid #eee;
+  text-align: center;
 }
 
+thead {
+  background: #0d3f75;
+  color: #fff;
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
 .credit {
   color: green;
   font-weight: bold;

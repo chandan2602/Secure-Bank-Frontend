@@ -26,12 +26,13 @@
 
       <form>
         <div class="input-group">
-          <label>Username</label>
+          <label>Email</label>
           <input
             type="text"
-            name="username"
-            placeholder="Enter your username"
-            [(ngModel)]="username"
+            name="email"
+            placeholder="Enter your email"
+            [(ngModel)] = 'loginPayload.email'
+            
           />
         </div>
 
@@ -40,13 +41,14 @@
 
           <div class="password-box">
             <input
-              [type]="inputType"
+              
               name="password"
               placeholder="Enter your password"
-              [(ngModel)]="password"
+              [(ngModel)] = 'loginPayload.password'
+              
             />
 
-            <span class="eye" name = "isshow" (click)="ondisplay()" > 👁️ </span>
+            <span class="eye" name = "isshow"  > 👁️ </span>
           </div>
         </div>
 

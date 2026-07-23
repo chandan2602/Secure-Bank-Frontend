@@ -2,27 +2,34 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Sidebar } from '../sidebar/sidebar';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { TransationsServices } from '../../Services/transations';
 
 @Component({
   selector: 'app-transation',
-  imports: [Sidebar,CommonModule],
+  imports: [Sidebar, CommonModule],
   templateUrl: './transation.html',
   styleUrl: './transation.css',
 })
 export class Transation implements OnInit {
+  http = inject(HttpClient);
 
-  ngOnInit(){
-    debugger;
-    this.get_user()
+  serv = inject(TransationsServices);
+
+  transation: any[] = [];
+
+  ngOnInit() {
+    this.ontransation();
   }
-  http = inject(HttpClient)  // dependency injection which priviously doing wit constructor  
-  userlist :any[] = []
 
-  get_user(){
-    this.http.get('http://127.0.0.1:8000/get_users').subscribe((result:any) =>{
-      debugger;
-      this.userlist = result
-
-    })
+  ontransation() {
+    this.serv.onTransationService().subscribe({
+      next: (res) => {
+        this.transation = res;
+        console.log(this.transation);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
   }
 }

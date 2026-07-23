@@ -27,25 +27,19 @@
     <table>
       <thead>
         <tr>
-          <th>id</th>
+          <th>S.No</th>
           <th>Full Name</th>
-          <th>Username</th>
           <th>Mobile No</th>
           <th>Email</th>
-          <th>Password</th>
-          <th>Opening Date</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let i of userlist">
-          <td>{{ i.id }}</td>
+        <tr *ngFor="let i of transation; let index = index" >
+          <td >{{ index + 1 }}</td>
           <td>{{ i.full_name }}</td>
-          <td>{{ i.user_name }}</td>
           <td>{{ i.mobile_number }}</td>
           <td>{{ i.email }}</td>
-          <td>{{ i.user_password }}</td>
-          <td>{{ i.opening_date }}</td>
         </tr>
       </tbody>
     </table>

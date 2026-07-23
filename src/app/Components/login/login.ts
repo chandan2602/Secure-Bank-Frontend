@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Auth } from '../../auth/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -10,33 +12,28 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.css',
 })
 export class Login {
-  username: string = '';
-  password: string = '';
-  isLoggedIn = false;
-  isshow: boolean = false;
-  inputType: string = 'password';
-  constructor(private router: Router) {}
+  router = inject(Router);
+  authService = inject(Auth);
+  snackbar = inject (MatSnackBar)
+
+  loginPayload = {
+    email: '',
+    password: '',
+  };
+
   OnLogin() {
-    if (this.username === 'chandankumar' && this.password === '123456') {
-      alert('Login successfull');
-      this.router.navigate(['/dashboard']).then((success) => {
-        if (!success) {
-          console.error('Navigation failed');
-        }
-      });
-    } else {
-      alert('invalid Username and password');
-    }
+    this.authService.login(this.loginPayload.email, this.loginPayload.password).subscribe({
+      next: (res: any) => {
+        this.authService.saveToken(res.token);
+        this.router.navigate(['/dashboard']);
+        this.snackbar.open('Login Sucessful','close' ,{duration:3000})
+      },
+      error: (err) => {
+        console.log(err);
+        this.snackbar.open('Invalid Credential','close', {duration : 3000})
+      },
+    });
   }
 
-  OnLogout() {}
-
-  ondisplay() {
-    this.isshow = !this.isshow;
-    if (this.isshow) {
-      this.inputType = 'text';
-    } else {
-      this.inputType = 'password';
-    }
-  }
+ 
 }
