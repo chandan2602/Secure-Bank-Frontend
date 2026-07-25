@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class Register implements OnInit {
   http = inject(HttpClient);
+  baseUrl = environment.apiUrl
 
   ngOnInit() {
     this.registerUser();
@@ -23,9 +25,9 @@ export class Register implements OnInit {
   "user_password": ""
 }
   registerUser() {
-    this.http.post('http://127.0.0.1:8000/user_registration', this.registerobj).subscribe({
+    this.http.post(`${this.baseUrl}/user_registration`, this.registerobj).subscribe({
       next: (response) => {
-        console.log("user created")
+        console.log("user created",response)
       },
       error: (error) => {
         console.error(error);

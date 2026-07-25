@@ -11,15 +11,19 @@ export class TransationsServices {
 
   baseUrl = env.apiUrl;
 
-  // TransationPayload = {
-  //   full_name : '',
-  //   mobile_number : '',
-  //   email : '',
-  //   amount: '',
-  //   loan_date : Date
-  // }
+  TransationPayload = {
+    full_name: '',
+    mobile_number: '',
+    email: '',
+    amount: '',
+    loan_date: Date,
+  };
 
   onTransationService(): Observable<any> {
     return this.http.get(`${this.baseUrl}/get_userTransation`);
+  }
+
+  onNewTransation(): Observable<any> {
+    return this.http.post(`${this.baseUrl}/get_userTransation`,this.TransationPayload)
   }
 }

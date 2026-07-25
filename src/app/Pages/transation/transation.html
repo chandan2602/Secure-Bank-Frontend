@@ -4,17 +4,17 @@
   <div class="page-header">
     <h1>Transaction History</h1>
     <p>View and track all your banking activities.</p>
+    <button class="add-btn" (click)="openPopUp()">+ Add Transaction</button>
   </div>
 
   <div class="summary-cards">
     <div class="card">
-      <h3>Total Transactions</h3>
-      <h2>156</h2>
-    </div>
-
-    <div class="card">
       <h3>Total Credits</h3>
-      <h2>₹1,25,000</h2>
+      <h2>{{ totoal_amount }}</h2>
+    </div>
+    <div class="card">
+      <h3>Total Transactions</h3>
+      <h2>{{ total_transation }}</h2>
     </div>
 
     <div class="card">
@@ -35,13 +35,105 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let i of transation; let index = index" >
-          <td >{{ index + 1 }}</td>
+        <tr *ngFor="let i of transation; let index = index">
+          <td>{{ index + 1 }}</td>
           <td>{{ i.full_name }}</td>
           <td>{{ i.mobile_number }}</td>
           <td>{{ i.email }}</td>
         </tr>
       </tbody>
     </table>
+  </div>
+  <!-- ======================================= -->
+  <!-- Add transation Form -->
+  <div class="form-container" *ngIf="isPopUp">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2>Add New Transaction</h2>
+        <button class="close-btn" (click)="closePopUp()">&times;</button>
+      </div>
+
+      <form class="transaction-form" (ngSubmit)="onFormSubmit()">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="full_name">Full Name</label>
+          <input
+            type="text"
+            id="full_name"
+            name = "full_name"
+            class="form-control"
+            placeholder="Enter full name"
+            [(ngModel)] =  serv.TransationPayload.full_name
+            required
+          />
+          <div class="error-message">Full name is required.</div>
+        </div>
+
+        <!-- Mobile Number -->
+        <div class="form-group">
+          <label for="mobile_number">Mobile Number</label>
+          <input
+            type="text"
+            id="mobile_number"
+            name = "mobile_number"
+            class="form-control"
+            placeholder="Enter mobile number"
+            [(ngModel)] =  serv.TransationPayload.mobile_number
+            required
+          />
+          <div class="error-message">Mobile number is required.</div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" 
+            id="email" 
+            name = 'email'
+            class="form-control" 
+            placeholder="Enter email"
+            [(ngModel)] =  serv.TransationPayload.email
+            required />
+          <div class="error-message">Please enter a valid email.</div>
+        </div>
+
+        <!-- Amount -->
+        <div class="form-group">
+          <label for="amount">Amount (₹)</label>
+          <input
+            type="number"
+            id="amount"
+            name = 'amount'
+            class="form-control"
+            placeholder="Enter amount"
+            step="0.01"
+            min="0"
+            [(ngModel)] =  serv.TransationPayload.amount
+            required
+          />
+          <div class="error-message">Amount must be a positive number.</div>
+        </div>
+
+        <!-- Loan Date -->
+        <div class="form-group">
+          <label for="loan_date">Loan Date</label>
+          <input 
+          type="date" 
+          name = "loan_date"
+          id="loan_date" 
+          class="form-control"
+          [(ngModel)] =  serv.TransationPayload.loan_date 
+          required />
+          <div class="error-message">Loan date is required.</div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" (click)="closePopUp()">Cancel</button>
+
+          <button type="submit" class="submit-button" (click)="onNextTransation()">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
