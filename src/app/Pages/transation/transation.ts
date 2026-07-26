@@ -38,6 +38,7 @@ export class Transation implements OnInit {
 
   ngOnInit() {
     this.ontransation();
+    this.onNextTransation()
   }
 
   ontransation() {

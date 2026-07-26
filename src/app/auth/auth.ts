@@ -20,7 +20,7 @@ export class Auth {
       'Content-Type': 'application/x-www-form-urlencoded',
     });
 
-    return this.http.post(`${environment.apiUrl}/login`, body.toString(), { headers });
+    return this.http.post(`${environment.apiUrl}/registration/login`, body.toString(), { headers });
     // we pass the body.toString() because it will convert email=john@gmail.com&password=123456
     // This is called URL-encoded form data.
   }

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class TransationsServices {
   http = inject(HttpClient);
 
-  baseUrl = env.apiUrl;
+  baseUrl = `${env.apiUrl}/transation`;
 
   TransationPayload = {
     full_name: '',
@@ -24,6 +24,6 @@ export class TransationsServices {
   }
 
   onNewTransation(): Observable<any> {
-    return this.http.post(`${this.baseUrl}/get_userTransation`,this.TransationPayload)
+    return this.http.post(`${this.baseUrl}/add_userTransation`,this.TransationPayload)
   }
 }

@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 })
 export class Register implements OnInit {
   http = inject(HttpClient);
-  baseUrl = environment.apiUrl
+  baseUrl = `${environment.apiUrl}/registration`
 
   ngOnInit() {
     this.registerUser();

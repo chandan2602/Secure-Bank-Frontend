@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class Supportservice {
 
     http = inject(HttpClient)
-    baseUrl = environment.apiUrl
+    baseUrl = `${environment.apiUrl}/support`
 
     body = {
       full_name : "",
