@@ -9,95 +9,118 @@
   <body>
     <!-- Navbar -->
     <app-sidebar></app-sidebar>
-    <!-- Hero -->
 
-    <section class="hero">
-      <h1>How can we help you?</h1>
-      <p>Search our help center or contact our support team.</p>
+    <div class="main-content">
+      <!-- Hero -->
+      <section class="hero">
+        <h1>How can we help you?</h1>
+      </section>
 
-      <div class="search-box">
-        <input type="text" placeholder="Search FAQs..." />
-        <button>Search</button>
-      </div>
-    </section>
+      <!-- Support Options -->
 
-    <!-- Support Options -->
-
-    <section class="support-cards">
-      <div class="card">
-        <div class="icon">💳</div>
-        <h3>Card Issues</h3>
-        <p>Block, replace, or manage your debit and credit cards.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">💸</div>
-        <h3>Money Transfer</h3>
-        <p>Get help with UPI, NEFT, RTGS, and IMPS transactions.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">🔒</div>
-        <h3>Security</h3>
-        <p>Report fraud, suspicious activity, or secure your account.</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">📱</div>
-        <h3>Mobile Banking</h3>
-        <p>Resolve login issues and app-related problems.</p>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-
-    <section class="faq">
-      <h2>Frequently Asked Questions</h2>
-
-      <div class="faq-item">
-        <h4>How do I reset my password?</h4>
-        <p>You can reset your password from the Login page by clicking "Forgot Password".</p>
-      </div>
-
-      <div class="faq-item">
-        <h4>How can I block my debit card?</h4>
-        <p>Go to Cards → Manage Cards → Block Card or contact customer support.</p>
-      </div>
-
-      <div class="faq-item">
-        <h4>Why is my transfer pending?</h4>
-        <p>Transfers may take a few minutes depending on the payment network.</p>
-      </div>
-    </section>
-
-    <!-- Contact Form -->
-
-    <section class="contact">
-      <div class="contact-form">
-        <h2>Contact Support</h2>
-
-        <input type="text" placeholder="Full Name" />
-        <input type="email" placeholder="Email Address" />
-        <textarea rows="5" placeholder="Describe your issue"></textarea>
-
-        <button>Submit Request</button>
-      </div>
-
-      <div class="contact-info">
-        <h2>Customer Care</h2>
-
-        <p>📞 Toll Free: 1800-123-4567</p>
-        <p>📧 support@securebank.com</p>
-        <p>🕒 Available 24/7</p>
-
-        <div class="help-box">
-          <h3>Emergency?</h3>
-          <p>
-            If you suspect fraud or unauthorized access, immediately block your card and contact
-            support.
-          </p>
+      <section class="support-cards">
+        <div class="card">
+          <div class="icon">💳</div>
+          <h3>Card Issues</h3>
+          <p>Block, replace, or manage your debit and credit cards.</p>
         </div>
-      </div>
-    </section>
+
+        <div class="card">
+          <div class="icon">💸</div>
+          <h3>Money Transfer</h3>
+          <p>Get help with UPI, NEFT, RTGS, and IMPS transactions.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔒</div>
+          <h3>Security</h3>
+          <p>Report fraud, suspicious activity, or secure your account.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📱</div>
+          <h3>Mobile Banking</h3>
+          <p>Resolve login issues and app-related problems.</p>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+
+      <!-- Contact Form -->
+
+      <section class="contact">
+        <div class="contact-form">
+          <h2>Contact Support</h2>
+
+          <input
+            type="text"
+            name="full_name"
+            [(ngModel)]="serv.body.full_name"
+            placeholder="Full Name"
+          />
+
+          <input
+            type="text"
+            name="mobile_number"
+            [(ngModel)]="serv.body.mobile_number"
+            placeholder="mobile number"
+          />
+
+          <input type="email" name="email" [(ngModel)]="serv.body.email" placeholder="Email" />
+
+          <textarea rows="5" [(ngModel)]="serv.body.Description" placeholder="Describe your issue">
+          </textarea>
+
+          <button class="submit-support" (click)="onsubmit()">Submit Request</button>
+        </div>
+
+        <div class="contact-info">
+          <h2>Customer Care</h2>
+
+          <p>📞 Toll Free: 9777064700</p>
+          <p>📧 chandan@securebank.com</p>
+          <p>🕒 Available 24/7</p>
+
+          <div class="help-box">
+            <h3>Emergency?</h3>
+            <p>
+              If you suspect fraud or unauthorized access, immediately block your card and contact
+              support.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="details-section">
+        <h2 class="table-title">Support Requests</h2>
+        <div *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</div>
+        <div class="table-wrapper">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of support; let idx = index">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ i.full_name }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.mobile_number }}</td>
+                <td class="desc-cell">{{ i.Description }}</td>
+              </tr>
+              <tr *ngIf="support.length === 0">
+                <td colspan="5" class="empty-row">No support requests found.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      
+    </div>
   </body>
 </html>

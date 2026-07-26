@@ -9,6 +9,12 @@ body {
   background: #f4f8fc;
 }
 
+.main-content {
+  margin-left: 260px;
+  min-height: 100vh;
+  padding: 20px 24px;
+}
+
 /* Navbar */
 
 .navbar {
@@ -42,15 +48,12 @@ body {
 /* Hero */
 
 .hero {
-  background: linear-gradient(135deg, #003366, #0077ff);
-  color: white;
-  text-align: center;
-  padding: 70px 20px;
-  margin-left: 260px;
+  color: black;
+  padding: 20px 20px 10px;
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: 32px;
 }
 
 .hero p {
@@ -60,7 +63,6 @@ body {
 
 .search-box {
   display: flex;
-  justify-content: center;
   max-width: 600px;
   margin: auto;
 }
@@ -85,37 +87,41 @@ body {
 /* Cards */
 
 .support-cards {
-  margin-left: 260px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-right: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  padding: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  padding: 0;
 }
 
 .card {
   background: white;
-  padding: 30px;
-  border-radius: 15px;
+  padding: 20px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
 }
 
 .icon {
-  font-size: 45px;
-  margin-bottom: 15px;
+  font-size: 36px;
+  margin-bottom: 10px;
 }
 
 .card h3 {
   color: #003366;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.card p {
+  font-size: 13px;
+  color: #555;
 }
 
 /* FAQ */
@@ -146,53 +152,85 @@ body {
 /* Contact */
 
 .contact {
-  width: 90%;
-  margin: 50px auto;
+  width: 100%;
+  margin: 20px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 20px;
 }
 
 .contact-form,
 .contact-info {
   background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
 .contact-form h2,
 .contact-info h2 {
   color: #003366;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+  font-size: 18px;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
   border: 1px solid #ddd;
   border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #0077ff;
 }
 
 .contact-form button {
   width: 100%;
-  padding: 15px;
-  background: #0077ff;
+  padding: 13px;
+  background: #1f4e79;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.contact-form button:hover {
+  background: #1f4e79;
+}
+
+.contact-info p {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 .help-box {
-  margin-top: 25px;
+  margin-top: 16px;
   background: #eef5ff;
-  padding: 20px;
-  border-left: 5px solid #0077ff;
+  padding: 16px;
+  border-left: 4px solid #0077ff;
   border-radius: 8px;
+}
+
+.help-box h3 {
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #003366;
+}
+
+.help-box p {
+  font-size: 13px;
+  color: #444;
 }
 
 /* Responsive */
@@ -209,20 +247,114 @@ body {
   }
 
   .hero h1 {
-    font-size: 36px;
-  }
-
-  .search-box {
-    flex-direction: column;
-  }
-
-  .search-box input,
-  .search-box button {
-    border-radius: 30px;
-    margin: 5px 0;
+    font-size: 26px;
   }
 
   .contact {
     grid-template-columns: 1fr;
+  }
+}
+/* Section */
+.details-section {
+  margin: 20px 0 0;
+  width: 100%;
+}
+
+.table-title {
+  color: #003366;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Table */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+.styled-table thead {
+  background: #1f4e79;
+  color: #fff;
+}
+
+.styled-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+.styled-table th:first-child {
+  width: 50px;
+}
+
+/* Body */
+.styled-table td {
+  padding: 13px 16px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 14px;
+  color: #333;
+  vertical-align: top;
+}
+
+.desc-cell {
+  max-width: 300px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+/* Alternate Row Colors */
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f7f9fc;
+}
+
+/* Hover Effect */
+.styled-table tbody tr:hover {
+  background-color: #eaf4ff;
+  transition: background 0.2s ease;
+}
+
+/* Last Row */
+.styled-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.empty-row {
+  text-align: center;
+  color: #888;
+  padding: 30px;
+}
+
+.error-msg {
+  background: #fff0f0;
+  border-left: 4px solid #d9534f;
+  color: #d9534f;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .styled-table {
+    min-width: 600px;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 10px 12px;
+    font-size: 13px;
   }
 }
