@@ -3,7 +3,7 @@ import { Sidebar } from '../sidebar/sidebar';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { TransationsServices } from '../../Services/transations';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-transation',
@@ -20,6 +20,8 @@ export class Transation implements OnInit {
   transation: any[] = [];
   totoal_amount: string = '';
   total_transation: number = 0;
+  Total_interest_amount: number = 0;
+  Total_profit: number = 0;
 
   // showing popup card
   isPopUp = false;
@@ -38,15 +40,17 @@ export class Transation implements OnInit {
 
   ngOnInit() {
     this.ontransation();
-    this.onNextTransation()
+    // this.onNextTransation();
   }
 
   ontransation() {
-    this.serv.onTransationService().subscribe({
+    this.serv.ongetTransationService().subscribe({
       next: (res) => {
         this.transation = res.Transation_List;
-        this.totoal_amount = res.Total_transation_count;
+        this.totoal_amount = res.total_records;
         this.total_transation = res.Total_amount;
+        this.Total_interest_amount = res.Total_interest_amount;
+        this.Total_profit = res.Total_profit;
 
         console.log(this.transation);
       },
@@ -56,14 +60,25 @@ export class Transation implements OnInit {
     });
   }
 
-  onNextTransation(){
+  onNextTransation() {
     this.serv.onNewTransation().subscribe({
-      next : (response:any) => {
-          console.log(response)
+      next: (response: any) => {
+        console.log(response);
       },
-      error : (error) =>{
-        console.error(error)
-      }
-    })
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
+
+  onRefersh() {
+    this.serv.onRefreshTransation().subscribe({
+      next: (res: any) => {
+        return res;
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
   }
 }

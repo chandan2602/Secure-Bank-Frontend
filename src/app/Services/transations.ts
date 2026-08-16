@@ -17,13 +17,21 @@ export class TransationsServices {
     email: '',
     amount: '',
     loan_date: Date,
+    intrest_rate: 0,
+    total_days: 0,
+    interest_amount: 0,
+    total_amount: 0,
   };
 
-  onTransationService(): Observable<any> {
+  ongetTransationService(): Observable<any> {
     return this.http.get(`${this.baseUrl}/get_userTransation`);
   }
 
   onNewTransation(): Observable<any> {
-    return this.http.post(`${this.baseUrl}/add_userTransation`,this.TransationPayload)
+    return this.http.post(`${this.baseUrl}/add_newTransation`, this.TransationPayload);
+  }
+
+  onRefreshTransation(): Observable<any> {
+    return this.http.put(`${this.baseUrl}/update_intrest`, null);
   }
 }

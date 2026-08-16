@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Auth } from '../../auth/auth';
 
 @Component({
   selector: 'app-register',
@@ -10,24 +11,22 @@ import { environment } from '../../../environments/environment';
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
-export class Register implements OnInit {
-  http = inject(HttpClient);
-  baseUrl = `${environment.apiUrl}/registration`
+export class Register  {
 
-  ngOnInit() {
-    this.registerUser();
-  }
-  registerobj = {
-  "full_name": "",
-  "mobile_number": "",
-  "email": "",
-  "user_name": "",
-  "user_password": ""
-}
+  router = inject(Router);
+  snackbar = inject(MatSnackBar);
+  authService = inject(Auth)
+
+  // ngOnInit() {
+  //   this.registerUser();
+  // }
+
   registerUser() {
-    this.http.post(`${this.baseUrl}/user_registration`, this.registerobj).subscribe({
+    this.authService.Registration().subscribe({
       next: (response) => {
-        console.log("user created",response)
+        this.router.navigate(['/login']);
+        this.snackbar.open('Login Sucessful', 'close', { duration: 3000 });
+        return response
       },
       error: (error) => {
         console.error(error);

@@ -1,38 +1,111 @@
 <div class="dashboard-layout">
+  <app-sidebar></app-sidebar>
 
-    <app-sidebar></app-sidebar>
+  <div class="main-content">
+    <!-- Header -->
+    <div class="topbar">
+      <div>
+        <h2>Welcome Back 👋</h2>
+        <p>Have a nice day, {{ profile_name }}</p>
+      </div>
 
-    <div class="main-content">
+      <div class="profile">
+        <button class="notification">🔔</button>
 
-        <div class="topbar">
-
-            <h2>Dashboard</h2>
-
-            <div class="user">
-                👤 Chandan Kumar
-            </div>
-
-        </div>
-
-        <div class="cards">
-
-            <div class="card">
-                <h3>Total Balance</h3>
-                <h1>₹2,45,670</h1>
-            </div>
-
-            <div class="card">
-                <h3>Monthly Spending</h3>
-                <h1>₹35,400</h1>
-            </div>
-
-            <div class="card">
-                <h3>Transactions</h3>
-                <h1>125</h1>
-            </div>
-
-        </div>
-
+        <div class="user">👤 {{ profile_name }}</div>
+      </div>
     </div>
 
+    <!-- Balance Cards -->
+
+    <div class="cards">
+      <div class="card primary">
+        <span>Total Balance</span>
+
+        <h1>₹2,45,670</h1>
+
+        <small>+12% from last month</small>
+      </div>
+
+      <div class="card">
+        <span>Monthly Income</span>
+
+        <h2>₹80,000</h2>
+      </div>
+
+      <div class="card">
+        <span>Monthly Expense</span>
+
+        <h2>₹35,400</h2>
+      </div>
+
+      <div class="card">
+        <span>Savings</span>
+
+        <h2>₹1,20,000</h2>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="quick-actions">
+      <button>💸 Transfer</button>
+
+      <button>💳 Cards</button>
+
+      <button>🏦 Deposit</button>
+
+      <button>📱 Recharge</button>
+
+      <button>📄 Statement</button>
+
+      <button>💰 Loan</button>
+    </div>
+
+    <!-- Bottom -->
+
+    <div class="bottom">
+      <div class="transactions">
+        <h3>Recent Transactions</h3>
+
+        <table>
+          <tr>
+            <th>Date</th>
+
+            <th>Description</th>
+
+            <th>Amount</th>
+
+            <th>Status</th>
+          </tr>
+
+          <tr>
+            <td>Today</td>
+
+            <td>Amazon</td>
+
+            <td>-₹2,500</td>
+
+            <td>✔</td>
+          </tr>
+
+          <tr>
+            <td>Yesterday</td>
+
+            <td>Salary</td>
+
+            <td>+₹80,000</td>
+
+            <td>✔</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="chart">
+        <h3>Expense Overview</h3>
+
+        <canvas id="expenseChart"></canvas>
+      </div>
+    </div>
+  </div>
 </div>

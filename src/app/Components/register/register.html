@@ -24,7 +24,7 @@
             type="text"
             name="Full Name"
             placeholder="Full Name"
-            [(ngModel)]="registerobj.full_name"
+            [(ngModel)]="authService.RegistrationPayload.full_name"
           />
         </div>
 
@@ -33,7 +33,7 @@
             type="email"
             placeholder="Email Address"
             name="email"
-            [(ngModel)]="registerobj.email"
+            [(ngModel)]="authService.RegistrationPayload.email"
           />
         </div>
 
@@ -42,7 +42,7 @@
             type="text"
             placeholder="Mobile Number"
             name="mobile_number"
-            [(ngModel)]="registerobj.mobile_number"
+            [(ngModel)]="authService.RegistrationPayload.mobile_number"
             maxlength="10"
             minlength="10"
             inputmode="numeric"
@@ -54,7 +54,7 @@
             type="text"
             name="User_name"
             placeholder="Username"
-            [(ngModel)]="registerobj.user_name"
+            [(ngModel)]="authService.RegistrationPayload.user_name"
           />
         </div>
 
@@ -63,7 +63,7 @@
             type="password"
             placeholder="Password"
             name="user_password"
-            [(ngModel)]="registerobj.user_password"
+            [(ngModel)]="authService.RegistrationPayload.user_password"
           />
         </div>
 

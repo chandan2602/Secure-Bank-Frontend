@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './login.css',
 })
 export class Login {
+
   router = inject(Router);
   authService = inject(Auth);
   snackbar = inject (MatSnackBar)
@@ -22,11 +23,12 @@ export class Login {
   };
 
   OnLogin() {
-    this.authService.login(this.loginPayload.email, this.loginPayload.password).subscribe({
+    this.authService.Login().subscribe({
       next: (res: any) => {
-        this.authService.saveToken(res.token);
+        this.authService.saveToken(res.access_token);
         this.router.navigate(['/dashboard']);
         this.snackbar.open('Login Sucessful','close' ,{duration:3000})
+        return res
       },
       error: (err) => {
         console.log(err);

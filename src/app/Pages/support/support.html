@@ -64,6 +64,8 @@
             name="mobile_number"
             [(ngModel)]="serv.body.mobile_number"
             placeholder="mobile number"
+            maxlength="10"
+            minlength="10"
           />
 
           <input type="email" name="email" [(ngModel)]="serv.body.email" placeholder="Email" />
@@ -120,7 +122,6 @@
           </table>
         </div>
       </section>
-      
     </div>
   </body>
 </html>

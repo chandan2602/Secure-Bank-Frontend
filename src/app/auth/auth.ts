@@ -9,27 +9,34 @@ import { Observable } from 'rxjs';
 export class Auth {
   http = inject(HttpClient);
 
-  login(email: string, password: string): Observable<any> {
-    const body = new URLSearchParams();
-    //  URLSearchParams is a JavaScript class that helps you create key-value pairs in a format that many servers expect.
+  baseUrl = `${environment.apiUrl}/registration`;
 
-    body.set('username', email);
-    body.set('password', password); // these two pass the the values in the login form
+  RegistrationPayload = {
+    full_name: '',
+    email: '',
+    mobile_number: '',
+    user_name: '',
+    user_password: '',
+  };
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-    });
+  LoginPayload = {
+    email: '',
+    password: '',
+  };
 
-    return this.http.post(`${environment.apiUrl}/registration/login`, body.toString(), { headers });
-    // we pass the body.toString() because it will convert email=john@gmail.com&password=123456
-    // This is called URL-encoded form data.
+  Registration(): Observable<any> {
+    return this.http.post(`${this.baseUrl}/user_registration`, this.RegistrationPayload);
+  }
+
+  Login(): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login`, this.LoginPayload);
   }
 
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-  getToken(): string | null {
+  getToken() {
     return localStorage.getItem('token');
   }
 
@@ -37,14 +44,7 @@ export class Auth {
     localStorage.removeItem('token');
   }
 
-  isLoggedin(): boolean {
-    // return !!this.getToken()   this is for experienced do the same job convert string value to bool
-    // return this.getToken !== null // we  can write this also
-    const token = this.getToken();
-    if (token) {
-      return true;
-    } else {
-      return false;
-    }
+  isLogedIn(): Boolean {
+    return !!this.getToken();
   }
 }

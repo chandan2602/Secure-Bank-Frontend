@@ -5,11 +5,12 @@
     <h1>Transaction History</h1>
     <p>View and track all your banking activities.</p>
     <button class="add-btn" (click)="openPopUp()">+ Add Transaction</button>
+    <button class="refresh", (click)="onRefersh()">Refresh</button>
   </div>
 
   <div class="summary-cards">
     <div class="card">
-      <h3>Total Credits</h3>
+      <h3>Total Member</h3>
       <h2>{{ totoal_amount }}</h2>
     </div>
     <div class="card">
@@ -19,20 +20,51 @@
 
     <div class="card">
       <h3>Total Income</h3>
-      <h2>₹85,000</h2>
+      <h2>{{ Total_interest_amount }}</h2>
+    </div>
+
+    <div class="card">
+      <h3>Total Profit</h3>
+      <h2>{{ Total_profit }}</h2>
     </div>
   </div>
 
   <div class="table-container">
+    <div class="table-toolbar">
+      <div class="toolbar-group">
+        <label for="transaction-filter">Filter</label>
+        <select id="transaction-filter" class="filter-select">
+          <option value="all">All Transactions</option>
+          <option value="income">Income</option>
+          <option value="loan">Loan</option>
+          <option value="profit">Profit</option>
+        </select>
+      </div>
+
+      <div class="toolbar-group">
+        <label for="transaction-search">Search</label>
+        <input
+          type="search"
+          id="transaction-search"
+          class="search-input"
+          placeholder="Search by name or email"
+        />
+      </div>
+    </div>
+
     <table>
       <thead>
         <tr>
           <th>S.No</th>
           <th>Full Name</th>
           <th>Mobile No</th>
-          <th>Loan Amount</th>
           <th>Email</th>
           <th>Loan Date</th>
+          <th>Loan Amount</th>
+          <th>Interest Rate</th>
+          <th>total_days</th>
+          <th>Intrest Amount</th>
+          <th>total_amount</th>
         </tr>
       </thead>
 
@@ -41,9 +73,13 @@
           <td>{{ index + 1 }}</td>
           <td>{{ i.full_name }}</td>
           <td>{{ i.mobile_number }}</td>
-          <td>{{ i.amount }}</td>
           <td>{{ i.email }}</td>
-          <td>{{i.loan_date}}</td>
+          <td>{{ i.loan_date }}</td>
+          <td>{{ i.amount }}</td>
+          <td>{{ i.intrest_rate }}</td>
+          <td>{{ i.total_days }}</td>
+          <td>{{ i.interest_amount }}</td>
+          <td>{{ i.total_amount }}</td>
         </tr>
       </tbody>
     </table>
@@ -117,6 +153,20 @@
             step="0.01"
             min="0"
             [(ngModel)]="serv.TransationPayload.amount"
+            required
+          />
+          <div class="error-message">Amount must be a positive number.</div>
+        </div>
+        <div class="form-group">
+          <label for="Intrest_rate">Intrest Rate (%)</label>
+          <input
+            type="number"
+            id="Intrest_rate"
+            name="Intrest_rate"
+            class="form-control"
+            placeholder="Enter intrest"
+            min="0"
+            [(ngModel)]="serv.TransationPayload.intrest_rate"
             required
           />
           <div class="error-message">Amount must be a positive number.</div>

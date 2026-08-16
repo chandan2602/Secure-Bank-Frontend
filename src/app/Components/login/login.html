@@ -31,8 +31,7 @@
             type="text"
             name="email"
             placeholder="Enter your email"
-            [(ngModel)] = 'loginPayload.email'
-            
+            [(ngModel)]="authService.LoginPayload.email"
           />
         </div>
 
@@ -41,14 +40,12 @@
 
           <div class="password-box">
             <input
-              
               name="password"
               placeholder="Enter your password"
-              [(ngModel)] = 'loginPayload.password'
-              
+              [(ngModel)]="authService.LoginPayload.password"
             />
 
-            <span class="eye" name = "isshow"  > 👁️ </span>
+            <span class="eye" name="isshow"> 👁️ </span>
           </div>
         </div>
 
