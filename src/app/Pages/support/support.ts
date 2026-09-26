@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Sidebar } from '../sidebar/sidebar';
 import { Supportservice } from '../../Services/support';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class Support implements OnInit {
   serv = inject(Supportservice);
+  cdr = inject(ChangeDetectorRef);
+
 
   support: any[] = [];
   errorMsg: string = '';
@@ -38,6 +40,7 @@ export class Support implements OnInit {
       next: (res: any) => {
         console.log('Support API response:', res);
         this.support = res;
+        this.cdr.detectChanges()
       },
       error: (error) => {
         console.error('Support API error:', error);

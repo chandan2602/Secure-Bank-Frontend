@@ -72,7 +72,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background: #f4f8fc;
   padding: 30px;
 }
@@ -84,6 +84,7 @@ body {
   text-align: center;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   transition: 0.3s;
+  height: 100%;
 }
 
 .card:hover {
@@ -100,7 +101,7 @@ body {
 
 .payment-section {
   margin-left: 260px;
-  margin-top: 30px;
+  margin-top: 5px;
   margin-bottom: 30px;
   margin-right: auto;
   display: grid;
@@ -115,6 +116,7 @@ body {
   padding: 30px;
   border-radius: 18px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+ 
 }
 
 .payment-form h2,
@@ -188,12 +190,15 @@ button:hover {
 /* History */
 
 .history {
-  width: 90%;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+    width: 85%;
+    margin: 40px auto;
+    margin-left: 286px;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
 }
 
 .history h2 {
