@@ -36,15 +36,3 @@
   padding-left: 35px;
 }
 
-.logout-btn {
-  margin-top: auto;
-  padding: 20px;
-  text-align: center;
-  background: #d9534f;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.logout-btn:hover {
-  background: #c9302c;
-}

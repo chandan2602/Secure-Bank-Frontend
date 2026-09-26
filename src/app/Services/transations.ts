@@ -2,6 +2,30 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { environment as env } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+
+export interface TransactionRecord {
+  full_name: string;
+  mobile_number: string;
+  email: string;
+  loan_date: string;
+  amount: number;
+  intrest_rate: number;
+  total_days: number;
+  interest_amount: number;
+  total_amount: number;
+}
+
+export interface TransactionPageResponse {
+  page: number;
+  limit: number;
+  total_records: number;
+  total_pages: number;
+  Transation_List: TransactionRecord[];
+  Total_amount: number;
+  Total_interest_amount: number;
+  Total_profit: number;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +47,20 @@ export class TransationsServices {
     total_amount: 0,
   };
 
-  ongetTransationService(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/get_userTransation`);
+  ongetTransationService(
+    page: number,
+    limit: number,
+    search: string,
+  ): Observable<TransactionPageResponse> {
+    let params = new HttpParams().set('page', page).set('limit', limit);
+    const cleanedSearch = search.trim();
+    if (cleanedSearch) {
+      params = params.set('search', cleanedSearch);
+    }
+
+    return this.http.get<TransactionPageResponse>(`${this.baseUrl}/get_userTransation`, {
+      params,
+    });
   }
 
   onNewTransation(): Observable<any> {

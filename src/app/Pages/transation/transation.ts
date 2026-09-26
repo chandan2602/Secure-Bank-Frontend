@@ -2,7 +2,7 @@ import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Sidebar } from '../sidebar/sidebar';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { TransationsServices } from '../../Services/transations';
+import { TransactionPageResponse, TransationsServices } from '../../Services/transations';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -16,13 +16,23 @@ export class Transation implements OnInit {
   serv = inject(TransationsServices);
   cdr = inject(ChangeDetectorRef);
 
-  transation: any[] = [];
-  totoal_amount: string = '';
+  transation: TransactionPageResponse['Transation_List'] = [];
+  totoal_amount = 0;
   total_transation: number = 0;
   Total_interest_amount: number = 0;
   Total_profit: number = 0;
 
+  search: string = '';
+
+  // add Pagination
+  current_page = 1;
+  page_size = 10;
+
+  total_records: number = 0;
+  total_pages: number = 0;
+
   isPopUp = false;
+  Math: any;
 
   openPopUp() {
     this.isPopUp = true;
@@ -41,13 +51,17 @@ export class Transation implements OnInit {
   }
 
   ontransation() {
-    this.serv.ongetTransationService().subscribe({
-      next: (res) => {
+    this.serv.ongetTransationService(this.current_page, this.page_size, this.search).subscribe({
+      next: (res: TransactionPageResponse) => {
         this.transation = res.Transation_List;
         this.totoal_amount = res.total_records;
         this.total_transation = res.Total_amount;
         this.Total_interest_amount = res.Total_interest_amount;
         this.Total_profit = res.Total_profit;
+        this.current_page = res.page;
+        this.page_size = res.limit;
+        this.total_pages = res.total_pages;
+        this.total_records = res.total_records;
         this.cdr.detectChanges();
       },
       error: (error) => {
@@ -77,5 +91,29 @@ export class Transation implements OnInit {
         console.error(err);
       },
     });
+  }
+
+  onPriviousPage(): void {
+    if (this.current_page > 1) {
+      this.current_page--;
+      this.ontransation();
+    }
+  }
+
+  onNextPage(): void {
+    if (this.current_page < this.total_pages) {
+      this.current_page++;
+
+      this.ontransation();
+    }
+  }
+
+  getEndRecord(): number {
+    return Math.min(this.current_page * this.page_size, this.total_records);
+  }
+
+  onSerch() {
+    this.current_page = 1;
+    this.ontransation();
   }
 }

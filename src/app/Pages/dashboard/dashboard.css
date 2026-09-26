@@ -30,65 +30,6 @@ body {
 }
 
 /* ===========================
-   TOP BAR
-=========================== */
-
-.topbar {
-  background: #fff;
-  border-radius: 15px;
-  padding: 25px 35px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  margin-bottom: 30px;
-}
-
-.topbar h2 {
-  color: #16355c;
-  font-size: 30px;
-  margin-bottom: 5px;
-}
-
-.topbar p {
-  color: #777;
-  font-size: 15px;
-}
-
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.notification {
-  width: 45px;
-  height: 45px;
-  border: none;
-  border-radius: 50%;
-  background: #eef4ff;
-  cursor: pointer;
-  font-size: 18px;
-  transition: 0.3s;
-}
-
-.notification:hover {
-  background: #1565c0;
-  color: #fff;
-}
-
-.user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  color: #16355c;
-  background: #f5f7fb;
-  padding: 10px 18px;
-  border-radius: 30px;
-}
-
-/* ===========================
    SUMMARY CARDS
 =========================== */
 

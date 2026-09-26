@@ -80,14 +80,16 @@
           <h2>Customer Care</h2>
 
           <p>📞 Toll Free: 9777064700</p>
-          <p>📧 chandan@securebank.com</p>
-          <p>🕒 Available 24/7</p>
+          <p>📧 chandannayak1496@gmail.com</p>
+          <p>🕒 Available 10:00 am - 7:00 pm</p>
 
           <div class="help-box">
             <h3>Emergency?</h3>
             <p>
-              If you suspect fraud or unauthorized access, immediately block your card and contact
-              support.
+              If you have any doubt regarding the Loan or any other details then contanct me with
+              above details or fill the form, i will get back to you as soon as possible.
+              <br /><br />
+              Thank You
             </p>
           </div>
         </div>
@@ -100,26 +102,59 @@
           <table class="styled-table">
             <thead>
               <tr>
-                <th>#</th>
+                <th>SI.No</th>
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Mobile Number</th>
                 <th>Description</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let i of support; let idx = index">
-                <td>{{ idx + 1 }}</td>
+                <td>{{ (current_page - 1) * page_size + idx + 1 }}</td>
                 <td>{{ i.full_name }}</td>
                 <td>{{ i.email }}</td>
                 <td>{{ i.mobile_number }}</td>
                 <td class="desc-cell">{{ i.Description }}</td>
+                <td><button class="Action_button">Complete</button></td>
               </tr>
               <tr *ngIf="support.length === 0">
-                <td colspan="5" class="empty-row">No support requests found.</td>
+                <td colspan="6" class="empty-row">No support requests found.</td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="pagination-container" aria-label="Support request pagination">
+          <div class="pagination-info" aria-live="polite">
+            Showing
+            {{ total_record === 0 ? 0 : (current_page - 1) * page_size + 1 }}–
+            {{ getEndRecord() }}
+            of {{ total_record }} requests
+          </div>
+
+          <div class="pagination-controls">
+            <button
+              class="pagination-btn"
+              (click)="onPriviousPage()"
+              [disabled]="current_page <= 1 || total_page === 0"
+            >
+              Previous
+            </button>
+
+            <span class="page-number" aria-current="page">
+              Page {{ total_record === 0 ? 0 : current_page }} of {{ total_page }}
+            </span>
+
+            <button
+              class="pagination-btn"
+              (click)="onNextPage()"
+              [disabled]="total_page === 0 || current_page >= total_page"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </section>
     </div>

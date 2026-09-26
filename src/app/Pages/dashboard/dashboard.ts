@@ -1,6 +1,5 @@
-import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Sidebar } from '../sidebar/sidebar';
-import { DashbordService } from '../../Services/dashbord';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,24 +7,4 @@ import { DashbordService } from '../../Services/dashbord';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard implements OnInit {
-  service = inject(DashbordService);
-  cdr = inject(ChangeDetectorRef);
-
-  profile_name: string = '';
-
-  ngOnInit(): void {
-    this.profile();
-  }
-  profile() {
-    this.service.getprofile().subscribe({
-      next: (res: any) => {
-        this.profile_name = res.Name;
-        this.cdr.detectChanges();
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
-  }
-}
+export class Dashboard {}

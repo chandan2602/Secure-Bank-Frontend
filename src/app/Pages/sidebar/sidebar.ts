@@ -1,5 +1,5 @@
-import { Component,inject } from '@angular/core';
-import { RouterLink,Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -9,12 +9,4 @@ import { RouterLink,Router } from '@angular/router';
   styleUrl: './sidebar.css',
 })
 export class Sidebar {
-
-  router = inject(Router);
-
-   logout() {
-    localStorage.removeItem('token');
-
-    this.router.navigate(['/login']);
-  }
 }
