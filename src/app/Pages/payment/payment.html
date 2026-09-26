@@ -1,175 +1,298 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payments - SecureBank</title>
+<div class="khata-page">
+  <app-sidebar></app-sidebar>
 
-    <link rel="stylesheet" href="payment.css">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
-<body>
-
-
-    <!-- Hero -->
-     <app-sidebar></app-sidebar>
-
-
-    <!-- Payment Categories -->
-
-    <section class="payment-grid">
-
-        <div class="card">
-            <i class="fa-solid fa-bolt"></i>
-            <h3>Electricity</h3>
-            <p>Pay your electricity bills instantly.</p>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-droplet"></i>
-            <h3>Water Bill</h3>
-            <p>Quick and secure water bill payments.</p>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-wifi"></i>
-            <h3>Broadband</h3>
-            <p>Recharge or pay broadband invoices.</p>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-mobile-screen"></i>
-            <h3>Mobile Recharge</h3>
-            <p>Recharge prepaid or pay postpaid bills.</p>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-gas-pump"></i>
-            <h3>Gas Bill</h3>
-            <p>Pay LPG and pipeline gas bills.</p>
-        </div>
-
-        <div class="card">
-            <i class="fa-solid fa-tv"></i>
-            <h3>DTH Recharge</h3>
-            <p>Recharge your favorite DTH provider.</p>
-        </div>
-
+  <main class="khata-content">
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">GENERAL STORE · CUSTOMER LEDGER</p>
+        <h1>Dukaan Khata <span aria-hidden="true">📒</span></h1>
+        <p class="heading-copy">Keep track of customer udhaar and payments in one simple place.</p>
+      </div>
     </section>
 
-    <!-- Payment Form -->
-
-    <section class="payment-section">
-
-        <div class="payment-form">
-
-            <h2>Quick Payment</h2>
-
-            <form>
-
-                <label>Payment Type</label>
-                <select>
-                    <option>Electricity</option>
-                    <option>Water</option>
-                    <option>Broadband</option>
-                    <option>Mobile Recharge</option>
-                    <option>Gas</option>
-                    <option>DTH</option>
-                </select>
-
-                <label>Consumer / Mobile Number</label>
-                <input type="text" placeholder="Enter Number">
-
-                <label>Amount (₹)</label>
-                <input type="number" placeholder="Enter Amount">
-
-                <label>Remarks</label>
-                <textarea rows="3"
-                placeholder="Optional"></textarea>
-
-                <button type="submit">
-                    <i class="fa-solid fa-credit-card"></i>
-                    Pay Now
-                </button>
-
-            </form>
-
+    <section class="summary-grid" aria-label="Khata overview">
+      <article class="summary-card due-card">
+        <span class="summary-icon" aria-hidden="true">₹</span>
+        <div>
+          <p>Total outstanding</p>
+          <strong>{{ totalOutstanding() | currency: 'INR' : 'symbol' : '1.0-0' }}</strong
+          ><small>Across {{ customers().length }} customers</small>
         </div>
-
-        <!-- Summary -->
-
-        <div class="summary">
-
-            <h2>Account Details</h2>
-
-            <div class="balance-card">
-                <p>Available Balance</p>
-                <h1>₹ 2,45,670</h1>
-            </div>
-
-            <div class="details">
-                <p><strong>Account :</strong> XXXX XXXX 4589</p>
-                <p><strong>Daily Limit :</strong> ₹5,00,000</p>
-                <p><strong>Payments Today :</strong> ₹12,500</p>
-            </div>
-
-            <div class="notice">
-                <h3>🔒 Secure Payments</h3>
-                <p>
-                    All transactions are protected using
-                    advanced banking security.
-                </p>
-            </div>
-
+      </article>
+      <article class="summary-card">
+        <span class="summary-icon udhaar-icon" aria-hidden="true">↗</span>
+        <div>
+          <p>Udhaar today</p>
+          <strong>{{ todayUdhaar() | currency: 'INR' : 'symbol' : '1.0-0' }}</strong
+          ><small>Goods given on credit</small>
         </div>
-
+      </article>
+      <article class="summary-card">
+        <span class="summary-icon payment-icon" aria-hidden="true">↙</span>
+        <div>
+          <p>Payments collected</p>
+          <strong>{{ todayCollected() | currency: 'INR' : 'symbol' : '1.0-0' }}</strong
+          ><small>Received today</small>
+        </div>
+      </article>
+      <article class="summary-card">
+        <span class="summary-icon customer-icon" aria-hidden="true">♙</span>
+        <div>
+          <p>Customers with balance</p>
+          <strong>{{ customersWithBalance() }}</strong
+          ><small>Active khata accounts</small>
+        </div>
+      </article>
     </section>
 
-    <!-- Recent Payments -->
+    <section class="khata-workspace">
+      <aside class="customer-panel" aria-label="Customer list">
+        <div class="panel-heading">
+          <div>
+            <h2>Customers</h2>
+            <span>{{ customers().length }} khata accounts</span>
+          </div>
+          <button
+            class="new-customer-btn"
+            type="button"
+            (click)="toggleCustomerForm()"
+            [attr.aria-expanded]="showCustomerForm()"
+            aria-controls="new-customer-form"
+          >
+            {{ showCustomerForm() ? 'Cancel' : '+ New' }}
+          </button>
+        </div>
 
-    <section class="history">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input
+            type="search"
+            aria-label="Search customers"
+            placeholder="Find a customer..."
+            [ngModel]="search()"
+            (ngModelChange)="search.set($event)"
+          />
+        </label>
 
-        <h2>Recent Payments</h2>
+        @if (showCustomerForm()) {
+          <form
+            id="new-customer-form"
+            class="entry-form new-customer-form"
+            (ngSubmit)="addCustomer()"
+          >
+            <div class="entry-form-heading">
+              <div>
+                <h3>Open a new khata</h3>
+                <p>Add the customer to your store book.</p>
+              </div>
+            </div>
+            <label class="field-label">
+              Customer name
+              <input
+                type="text"
+                name="newCustomerName"
+                placeholder="Enter full name"
+                [(ngModel)]="newCustomerName"
+                required
+                maxlength="80"
+              />
+            </label>
+            <label class="field-label">
+              Mobile number <span class="optional-label">(optional)</span>
+              <input
+                type="tel"
+                name="newCustomerPhone"
+                placeholder="Enter phone number"
+                [(ngModel)]="newCustomerPhone"
+                maxlength="15"
+              />
+            </label>
+            @if (customerFormError()) {
+              <p class="form-error" role="alert">{{ customerFormError() }}</p>
+            }
+            <button class="save-entry create-customer-btn" type="submit">Create customer khata</button>
+          </form>
+        }
 
-        <table>
+        <div class="customer-list">
+          @for (customer of filteredCustomers(); track customer.id) {
+            <button
+              type="button"
+              class="customer-row"
+              [class.selected]="selectedCustomerId() === customer.id"
+              (click)="selectedCustomerId.set(customer.id)"
+              [attr.aria-pressed]="selectedCustomerId() === customer.id"
+            >
+              <span class="avatar">{{ getInitials(customer.name) }}</span>
+              <span class="customer-copy"
+                ><strong>{{ customer.name }}</strong
+                ><small>{{ customer.phone }}</small></span
+              >
+              <span class="customer-due" [class.no-due]="getBalance(customer.id) <= 0">
+                {{ getBalance(customer.id) | currency: 'INR' : 'symbol' : '1.0-0' }}
+                <small>{{ getBalance(customer.id) > 0 ? 'due' : 'clear' }}</small>
+              </span>
+            </button>
+          } @empty {
+            <p class="no-customers">No customers match your search.</p>
+          }
+        </div>
+      </aside>
 
-            <tr>
-                <th>Date</th>
-                <th>Category</th>
-                <th>Reference</th>
-                <th>Amount</th>
-                <th>Status</th>
-            </tr>
+      <div class="ledger-panel">
+        @if (selectedCustomer(); as customer) {
+          <div class="ledger-header">
+            <div class="selected-customer">
+              <span class="avatar large-avatar">{{ getInitials(customer.name) }}</span>
+              <div>
+                <p class="eyebrow">CUSTOMER KHATA</p>
+                <h2>{{ customer.name }}</h2>
+                <span>{{ customer.phone }}</span>
+              </div>
+            </div>
+            <div class="balance-box">
+              <span>Current balance</span>
+              <strong>{{ getBalance(customer.id) | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+              <small>{{ getBalance(customer.id) > 0 ? 'To be collected' : 'Account clear' }}</small>
+            </div>
+          </div>
 
-            <tr>
-                <td>07-Jun-2026</td>
-                <td>Electricity</td>
-                <td>EB458912</td>
-                <td>₹1,250</td>
-                <td class="success">Paid</td>
-            </tr>
+          <form class="entry-form" (ngSubmit)="addEntry()">
+            <div class="entry-form-heading">
+              <div>
+                <h3>Record an entry</h3>
+                <p>Add goods given on credit or a payment received.</p>
+              </div>
+            </div>
+            <div class="entry-fields">
+              <fieldset class="entry-type">
+                <legend>Entry type</legend>
+                <label class="type-option" [class.active-udhaar]="entryType() === 'udhaar'">
+                  <input
+                    type="radio"
+                    name="entryType"
+                    value="udhaar"
+                    [ngModel]="entryType()"
+                    (ngModelChange)="entryType.set($event)"
+                  />
+                  <span aria-hidden="true">↗</span> Udhaar
+                </label>
+                <label class="type-option" [class.active-payment]="entryType() === 'payment'">
+                  <input
+                    type="radio"
+                    name="entryType"
+                    value="payment"
+                    [ngModel]="entryType()"
+                    (ngModelChange)="entryType.set($event)"
+                  />
+                  <span aria-hidden="true">↙</span> Payment received
+                </label>
+              </fieldset>
+              <label class="field-label"
+                >Item / details
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="e.g. Rice 5kg, cooking oil"
+                  [(ngModel)]="description"
+                  required
+                  maxlength="100"
+                />
+              </label>
+              <label class="field-label amount-field"
+                >Amount (₹)
+                <span class="amount-input"
+                  ><span>₹</span
+                  ><input
+                    type="number"
+                    name="amount"
+                    placeholder="0.00"
+                    [(ngModel)]="amount"
+                    required
+                    min="1"
+                    step="0.01"
+                /></span>
+              </label>
+            </div>
+            @if (formError()) {
+              <p class="form-error" role="alert">{{ formError() }}</p>
+            }
+            <div class="form-footer">
+              <span>Entry date: {{ today | date: 'd MMM yyyy' }}</span
+              ><button class="save-entry" type="submit">
+                {{ entryType() === 'udhaar' ? '＋ Add to khata' : '✓ Record payment' }}
+              </button>
+            </div>
+          </form>
 
-            <tr>
-                <td>06-Jun-2026</td>
-                <td>Mobile Recharge</td>
-                <td>9876543210</td>
-                <td>₹399</td>
-                <td class="success">Paid</td>
-            </tr>
-
-            <tr>
-                <td>05-Jun-2026</td>
-                <td>Broadband</td>
-                <td>BB102548</td>
-                <td>₹999</td>
-                <td class="pending">Processing</td>
-            </tr>
-
-        </table>
-
+          <div class="ledger-table-section">
+            <div class="ledger-table-heading">
+              <div>
+                <h3>Khata entries</h3>
+                <p>A clear record of every udhaar and payment</p>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table class="ledger-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Details</th>
+                    <th>Udhaar</th>
+                    <th>Payment</th>
+                    <th>Balance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (entry of selectedEntries(); track entry.id) {
+                    <tr>
+                      <td>{{ entry.date | date: 'd MMM yyyy' }}</td>
+                      <td>
+                        <span class="entry-description">{{ entry.description }}</span
+                        ><span
+                          class="entry-kind"
+                          [class.kind-udhaar]="entry.type === 'udhaar'"
+                          [class.kind-payment]="entry.type === 'payment'"
+                          >{{ entry.type === 'udhaar' ? 'Udhaar' : 'Payment' }}</span
+                        >
+                      </td>
+                      <td class="credit-amount">
+                        {{
+                          entry.type === 'udhaar'
+                            ? (entry.amount | currency: 'INR' : 'symbol' : '1.0-0')
+                            : '—'
+                        }}
+                      </td>
+                      <td class="received-amount">
+                        {{
+                          entry.type === 'payment'
+                            ? (entry.amount | currency: 'INR' : 'symbol' : '1.0-0')
+                            : '—'
+                        }}
+                      </td>
+                      <td class="running-balance">
+                        {{ entry.balance | currency: 'INR' : 'symbol' : '1.0-0' }}
+                      </td>
+                    </tr>
+                  } @empty {
+                    <tr>
+                      <td colspan="5" class="empty-ledger">
+                        No entries yet. Record the first udhaar or payment above.
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        } @else {
+          <div class="select-customer-empty">
+            <span aria-hidden="true">📒</span>
+            <h2>Select a customer</h2>
+            <p>Choose a customer from the list to open their khata book.</p>
+          </div>
+        }
+      </div>
     </section>
-
-</body>
-</html>
+  </main>
+</div>

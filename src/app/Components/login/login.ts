@@ -12,30 +12,36 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './login.css',
 })
 export class Login {
-
   router = inject(Router);
   authService = inject(Auth);
-  snackbar = inject (MatSnackBar)
+  snackbar = inject(MatSnackBar);
 
   loginPayload = {
     email: '',
     password: '',
   };
 
+  private readExpirySeconds(response: unknown): number | undefined {
+    if (typeof response !== 'object' || response === null || !('expires_in' in response)) {
+      return undefined;
+    }
+
+    const expiresIn = response.expires_in;
+    return typeof expiresIn === 'number' ? expiresIn : undefined;
+  }
+
   OnLogin() {
     this.authService.Login().subscribe({
       next: (res: any) => {
-        this.authService.saveToken(res.access_token);
+        this.authService.saveToken(res.access_token, this.readExpirySeconds(res));
         this.router.navigate(['/dashboard']);
-        this.snackbar.open('Login Sucessful','close' ,{duration:3000})
-        return res
+        this.snackbar.open('Login Sucessful', 'close', { duration: 3000 });
+        return res;
       },
       error: (err) => {
         console.log(err);
-        this.snackbar.open('Invalid Credential','close', {duration : 3000})
+        this.snackbar.open('Invalid Credential', 'close', { duration: 3000 });
       },
     });
   }
-
- 
 }

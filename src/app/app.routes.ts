@@ -18,7 +18,7 @@ export const routes: Routes = [
   { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
   { path: 'landing-page', component: LandingPage },
   { path: 'accounts', component: Accounts },
-  { path: 'payments', component: Payment },
+  { path: 'shop-payments', component: Payment },
   { path: 'services', component: Services },
   { path: 'support', component: Support , canActivate: [authGuard]},
   { path: 'transfer', component: Transfer, canActivate : [authGuard] },
