@@ -12,12 +12,11 @@ export interface MemberProfile {
   providedIn: 'root',
 })
 export class DashbordService {
-
-  http = inject(HttpClient)
+  http = inject(HttpClient);
 
   readonly profileName = signal('Member');
 
-  baseUrl = `${environment.apiUrl}/registration`
+  baseUrl = `${environment.apiUrl}/registration`;
 
   getprofile(): Observable<MemberProfile> {
     return this.http.get<MemberProfile>(`${this.baseUrl}/get_users`).pipe(
@@ -29,5 +28,4 @@ export class DashbordService {
       }),
     );
   }
-  
 }

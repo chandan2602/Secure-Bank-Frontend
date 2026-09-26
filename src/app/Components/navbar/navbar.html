@@ -1,34 +1,33 @@
 <nav class="top-navbar" aria-label="Application navigation">
-	<div class="navbar-brand">SecureBank</div>
+  <div class="navbar-brand">SecureBank</div>
 
-	<div class="navbar-actions">
-		<span class="icon-action language-action" role="img" aria-label="Language: English">
-			<span aria-hidden="true">🌐</span>
-			<span class="language-label">EN</span>
-		</span>
+  <div class="navbar-actions">
+    <span class="icon-action language-action" role="img" aria-label="Language: English">
+      <span aria-hidden="true">🌐</span>
+      <span class="language-label">EN</span>
+    </span>
 
-		<span class="icon-action notification-action" role="img" aria-label="Notifications">
-			<span aria-hidden="true">🔔</span>
-		</span>
+    <span class="icon-action notification-action" role="img" aria-label="Notifications">
+      <span aria-hidden="true">🔔</span>
+    </span>
 
-		<details class="profile-menu">
-			<summary class="profile-chip" aria-label="Open member profile menu">
-				<span class="profile-icon" aria-hidden="true">👤</span>
-				<span class="member-name">{{ memberName() }}</span>
-				<span class="profile-caret" aria-hidden="true">⌄</span>
-			</summary>
+    <details class="profile-menu">
+      <summary class="profile-chip" aria-label="Open member profile menu">
+        <span class="profile-icon" aria-hidden="true">👤</span>
+        <span class="member-name">{{ memberName() }}</span>
+        <span class="profile-caret" aria-hidden="true">⌄</span>
+      </summary>
 
-			<div class="profile-dropdown">
-				<div class="dropdown-member">
-					<span class="dropdown-label">Signed in as</span>
-					<strong>{{ memberName() }}</strong>
-				</div>
-				<button class="dropdown-logout" type="button" (click)="logout()">
-					<span aria-hidden="true">↪</span>
-					<span>Logout</span>
-				</button>
-			</div>
-		</details>
-	</div>
+      <div class="profile-dropdown">
+        <div class="dropdown-member">
+          <span class="dropdown-label">Signed in as</span>
+          <strong>{{ memberName() }}</strong>
+        </div>
+        <button class="dropdown-logout" type="button" (click)="logout()">
+          <span aria-hidden="true">↪</span>
+          <span>Logout</span>
+        </button>
+      </div>
+    </details>
+  </div>
 </nav>
-
